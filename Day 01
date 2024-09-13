@@ -1,1 +1,28 @@
+𝐋𝐞𝐞𝐭𝐂𝐨𝐝𝐞 : 𝟏𝟑𝟏𝟎. 𝐗𝐎𝐑 𝐐𝐮𝐞𝐫𝐢𝐞𝐬 𝐨𝐟 𝐚 𝐒𝐮𝐛𝐚𝐫𝐫𝐚𝐲
+class Solution:
+    def xorQueries(self, arr: List[int], queries: List[List[int]]) -> List[int]:
+        res = []
+        prefix = [0]
+        for i in arr:
+            prefix.append(prefix[-1] ^ i)
+        for a, b in queries:
+            res.append(prefix[b+1] ^ prefix[a])
+        return res
+
+
+𝐂𝐨𝐝𝐞𝐂𝐡𝐞𝐟 : 𝐀𝐓𝐌 𝐌𝐚𝐜𝐡𝐢𝐧𝐞
+for _ in range(int(input())):
+    n, k = map(int, input().split())
+    A = list(input().split())
+    for i in range(n):
+        A[i] = int(A[i])
+    res = ""
+    for i in range(n):
+        if (A[i] <= k):
+            res += "1"
+            k -= A[i]
+        else:
+            res += '0'
+    print(res)
+
 
