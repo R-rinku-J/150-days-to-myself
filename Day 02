@@ -78,3 +78,22 @@ class Solution:
         return A.sort()
 
 
+𝐂𝐨𝐝𝐞𝐅𝐨𝐫𝐜𝐞𝐬 : 𝟐𝟎𝟎𝟎𝐁 - 𝐒𝐞𝐚𝐭𝐢𝐧𝐠 𝐢𝐧 𝐚 𝐁𝐮𝐬
+t = int(input())
+for _ in range(t):
+    n = int(input())
+    x = int(input())
+    left, right = x - 1, x + 1
+    rule = True
+    for p in range(1, n):
+        x = int(input())
+        if x == left:
+            left -= 1
+        elif x == right:
+            right += 1
+        else:
+            rule = False
+    if rule:
+        print("YES")
+    else:
+        print("NO")
