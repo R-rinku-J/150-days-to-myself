@@ -1,1 +1,80 @@
+𝐋𝐞𝐞𝐭𝐂𝐨𝐝𝐞 : 𝟐𝟒𝟏𝟗. 𝐋𝐨𝐧𝐠𝐞𝐬𝐭 𝐒𝐮𝐛𝐚𝐫𝐫𝐚𝐲 𝐖𝐢𝐭𝐡 𝐌𝐚𝐱𝐢𝐦𝐮𝐦 𝐁𝐢𝐭𝐰𝐢𝐬𝐞 𝐀𝐍𝐃
+class Solution:
+    def longestSubarray(self, nums: List[int]) -> int:
+        maxi = max(nums)
+        curr = longest = 0
+        for i in nums:
+            if i == maxi:
+                curr += 1
+                longest = max(longest,  curr)
+            else:
+                curr = 0
+        return longest
+
+
+𝐂𝐨𝐝𝐞𝐂𝐡𝐞𝐟 : 𝐓𝐂𝐒 𝐄𝐱𝐚𝐦𝐢𝐧𝐚𝐭𝐢𝐨𝐧
+# cook your dish here
+t = int(input())
+for i in range(t):
+    d_dsa, d_toc, d_dm = map(int, input().split())
+    s_dsa, s_toc, s_dm = map(int, input().split())
+    total_d = d_dsa + d_toc + d_dm
+    total_s = s_dsa + s_toc + s_dm
+    if total_d > total_s:
+        print('Dragon')
+    elif total_s > total_d:
+        print('Sloth')
+    else:
+        if d_dsa > s_dsa:
+            print('Dragon')
+        elif s_dsa > d_dsa:
+            print('Sloth')
+        else:
+            if d_toc > s_toc:
+                print('Dragon')
+            elif s_toc > d_toc:
+                print('Sloth')
+            else:
+                print('Tie')
+
+
+𝐆𝐞𝐞𝐤𝐬𝐅𝐨𝐫𝐆𝐞𝐞𝐤𝐬 : 𝐀𝐥𝐭𝐞𝐫𝐧𝐚𝐭𝐞 𝐩𝐨𝐬𝐢𝐭𝐢𝐯𝐞 𝐚𝐧𝐝 𝐧𝐞𝐠𝐚𝐭𝐢𝐯𝐞 𝐧𝐮𝐦𝐛𝐞𝐫𝐬
+#User function Template for python3
+class Solution:
+    def rearrange(self,arr):
+        # code here
+        positive = []
+        negative = []
+        for i in arr:
+            if i >= 0:
+                positive.append(i)
+            else:
+                negative.append(i)
+        result = []
+        p, n = 0, 0 
+        length_pos = len(positive)
+        length_neg = len(negative)
+        while p < length_pos and n < length_neg:
+            result.append(positive[p])
+            result.append(negative[n])
+            p += 1
+            n += 1
+        while p < length_pos:
+            result.append(positive[p])
+            p += 1
+        while n < length_neg:
+            result.append(negative[n])
+            n += 1
+        for i in range(len(arr)):
+            arr[i] = result[i]
+
+
+𝐈𝐧𝐭𝐞𝐫𝐯𝐢𝐞𝐰𝐁𝐢𝐭 : 𝐌𝐞𝐫𝐠𝐞 𝐓𝐰𝐨 𝐒𝐨𝐫𝐭𝐞𝐝 𝐋𝐢𝐬𝐭𝐬 𝐈𝐈
+class Solution:
+	# @param A : list of integers
+	# @param B : list of integers
+	def merge(self, A, B):
+        A.extend(B)
+        return A.sort()
+
 
