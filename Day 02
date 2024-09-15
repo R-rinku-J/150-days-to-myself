@@ -97,3 +97,39 @@ for _ in range(t):
         print("YES")
     else:
         print("NO")
+
+
+𝑳𝒆𝒆𝒕𝑪𝒐𝒅𝒆 𝑩𝒊𝒘𝒆𝒆𝒌𝒍𝒚 𝑪𝒐𝒏𝒕𝒆𝒔𝒕 139
+𝟑𝟐𝟖𝟓. 𝐅𝐢𝐧𝐝 𝐈𝐧𝐝𝐢𝐜𝐞𝐬 𝐨𝐟 𝐒𝐭𝐚𝐛𝐥𝐞 𝐌𝐨𝐮𝐧𝐭𝐚𝐢𝐧𝐬
+class Solution:
+    def stableMountains(self, height: List[int], threshold: int) -> List[int]:
+        res = []
+        for i in range(1, len(height)):
+            if height[i-1] > threshold:
+                res.append(i)
+        return res
+
+𝟑𝟐𝟖𝟔. 𝐅𝐢𝐧𝐝 𝐚 𝐒𝐚𝐟𝐞 𝐖𝐚𝐥𝐤 𝐓𝐡𝐫𝐨𝐮𝐠𝐡 𝐚 𝐆𝐫𝐢𝐝
+from collections import deque
+class Solution:
+    def findSafeWalk(self, grid, health):
+        m, n = len(grid), len(grid[0])
+        directions = [(0, 1), (1, 0), (0, -1), (-1, 0)]
+        q = deque([((0, 0), health - grid[0][0])])
+        visited = [[-1 for _ in range(n)] for _ in range(m)]
+        visited[0][0] = health - grid[0][0]
+        while q:
+            (x, y), currHealth = q.popleft()
+            if x == m - 1 and y == n - 1 and currHealth > 0:
+                return True
+            for dx, dy in directions:
+                newX, newY = x + dx, y + dy
+                if 0 <= newX < m and 0 <= newY < n:
+                    newHealth = currHealth - grid[newX][newY]
+                    if newHealth > 0 and newHealth > visited[newX][newY]:
+                        visited[newX][newY] = newHealth
+                        q.append(((newX, newY), newHealth))
+        return False
+
+𝟑𝟐𝟖7. 𝐅𝐢𝐧𝐝 𝐭𝐡𝐞 𝐌𝐚𝐱𝐢𝐦𝐮𝐦 𝐒𝐞𝐪𝐮𝐞𝐧𝐜𝐞 𝐕𝐚𝐥𝐮𝐞 𝐨𝐟 𝐀𝐫𝐫𝐚𝐲
+𝟑𝟐𝟖8. 𝐋𝐞𝐧𝐠𝐭𝐡 𝐨𝐟 𝐭𝐡𝐞 𝐋𝐨𝐧𝐠𝐞𝐬𝐭 𝐈𝐧𝐜𝐫𝐞𝐚𝐬𝐢𝐧𝐠 𝐏𝐚𝐭𝐡
