@@ -1,1 +1,109 @@
+𝐋𝐞𝐞𝐭𝐂𝐨𝐝𝐞 : 𝟏𝟑𝟕𝟏. 𝐅𝐢𝐧𝐝 𝐭𝐡𝐞 𝐋𝐨𝐧𝐠𝐞𝐬𝐭 𝐒𝐮𝐛𝐬𝐭𝐫𝐢𝐧𝐠 𝐂𝐨𝐧𝐭𝐚𝐢𝐧𝐢𝐧𝐠 𝐕𝐨𝐰𝐞𝐥𝐬 𝐢𝐧 𝐄𝐯𝐞𝐧 𝐂𝐨𝐮𝐧𝐭𝐬
+class Solution:
+    def findTheLongestSubstring(self, s: str) -> int:
+        mask = 0  
+        max_len = 0  
+        mask_map = {0: -1}  
+        vowels = "aeiou"  
 
+        for i, char in enumerate(s):
+            if char in vowels:  
+                mask ^= 1 << vowels.index(char)
+            if mask in mask_map:
+                max_len = max(max_len, i - mask_map[mask])
+            else:
+                mask_map[mask] = i
+        return max_len
+
+
+𝐂𝐨𝐝𝐞𝐂𝐡𝐞𝐟 : 𝐀𝐝𝐣𝐚𝐜𝐞𝐧𝐭 𝐒𝐮𝐦 𝐏𝐚𝐫𝐢𝐭𝐲
+# cook your dish here
+for i in range(int(input())):
+    a=int(input())
+    s=input()
+    c=s.count('1')
+    if(c%2==0):
+        print("YES")
+    else:
+        print("NO")
+
+
+𝐆𝐞𝐞𝐤𝐬𝐅𝐨𝐫𝐆𝐞𝐞𝐤𝐬 : 𝐁𝐢𝐧𝐚𝐫𝐲 𝐓𝐫𝐞𝐞 𝐭𝐨 𝐃𝐋𝐋
+#Function to convert a binary tree to doubly linked list.
+class Solution:
+    def __init__(self):
+        self.prev = None  # To keep track of the previous node in inorder traversal
+    
+    def bToDLL(self, root):
+        self.head = None
+        
+        def inorder(curr):
+            if curr is None:
+                return
+            inorder(curr.left)
+        
+            if self.prev is None:
+                self.head = curr
+            else:
+                curr.left = self.prev
+                self.prev.right = curr
+            self.prev = curr
+            inorder(curr.right)
+        inorder(root)
+        return self.head
+
+
+𝐈𝐧𝐭𝐞𝐫𝐯𝐢𝐞𝐰𝐁𝐢𝐭 : 𝐈𝐦𝐩𝐥𝐞𝐦𝐞𝐧𝐭 𝐒𝐭𝐫𝐒𝐭𝐫
+class Solution:
+	# @param A : string
+	# @param B : string
+	# @return an integer
+	def strStr(self, A, B):
+        if (B not in A):
+            return -1
+        b = len(B)
+        for i in range(len(A) - b + 1):
+            if (A[i:i + b] == B):
+                return i
+
+
+𝐂𝐨𝐝𝐞𝐅𝐨𝐫𝐜𝐞𝐬 : 𝐓𝐡𝐫𝐞𝐞 𝐁𝐫𝐨𝐭𝐡𝐞𝐫𝐬
+def find_late_brother(a: int, b: int) -> int:
+    all_brothers = {1, 2, 3}
+    arrived_on_time = {a, b}
+    late_brother = all_brothers - arrived_on_time
+    return late_brother.pop()
+a, b = map(int, input().split())
+print(find_late_brother(a, b))
+
+
+𝑳𝒆𝒆𝒕𝑪𝒐𝒅𝒆 : 𝑾𝒆𝒆𝒌𝒍𝒚 𝑪𝒐𝒏𝒕𝒆𝒔𝒕 415
+𝟑𝟐𝟖𝟗. 𝐓𝐡𝐞 𝐓𝐰𝐨 𝐒𝐧𝐞𝐚𝐤𝐲 𝐍𝐮𝐦𝐛𝐞𝐫𝐬 𝐨𝐟 𝐃𝐢𝐠𝐢𝐭𝐯𝐢𝐥𝐥𝐞
+class Solution:
+    def getSneakyNumbers(self, nums: List[int]) -> List[int]:
+        n = len(nums) - 2
+        freq = [0]*n
+        res = []
+        for num in nums:
+            freq[num] += 1
+        for i in range(n):
+            if freq[i] == 2:
+                res.append(i)
+        return res
+
+𝟑𝟐𝟗𝟎. 𝐌𝐚𝐱𝐢𝐦𝐮𝐦 𝐌𝐮𝐥𝐭𝐢𝐩𝐥𝐢𝐜𝐚𝐭𝐢𝐨𝐧 𝐒𝐜𝐨𝐫𝐞
+class Solution:
+    def maxScore(self, a: List[int], b: List[int]) -> int:
+        n = len(b)
+        dp = [[float('-inf')] * 5 for _ in range(n+1)]
+        for i in range(n + 1):
+            dp[i][0] = 0
+        for i in range(1, n+1):
+            for k in range(1, 5):
+                dp[i][k] = dp[i-1][k]
+                if i >= k:
+                    dp[i][k] = max(dp[i][k], dp[i-1][k-1] + a[k-1]*b[i-1])
+        return dp[n][4]
+
+𝟑𝟐𝟗𝟏. 𝐌𝐢𝐧𝐢𝐦𝐮𝐦 𝐍𝐮𝐦𝐛𝐞𝐫 𝐨𝐟 𝐕𝐚𝐥𝐢𝐝 𝐒𝐭𝐫𝐢𝐧𝐠𝐬 𝐭𝐨 𝐅𝐨𝐫𝐦 𝐓𝐚𝐫𝐠𝐞𝐭 𝐈
+𝟑𝟐𝟗𝟐. 𝐌𝐢𝐧𝐢𝐦𝐮𝐦 𝐍𝐮𝐦𝐛𝐞𝐫 𝐨𝐟 𝐕𝐚𝐥𝐢𝐝 𝐒𝐭𝐫𝐢𝐧𝐠𝐬 𝐭𝐨 𝐅𝐨𝐫𝐦 𝐓𝐚𝐫𝐠𝐞𝐭 𝐈𝐈
