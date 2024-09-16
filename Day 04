@@ -1,1 +1,14 @@
+𝐋𝐞𝐞𝐭𝐂𝐨𝐝𝐞 : 𝟓𝟑𝟗. 𝐌𝐢𝐧𝐢𝐦𝐮𝐦 𝐓𝐢𝐦𝐞 𝐃𝐢𝐟𝐟𝐞𝐫𝐞𝐧𝐜𝐞
+class Solution:
+    def findMinDifference(self, timePoints: List[str]) -> int:
+        for i, time in enumerate(timePoints):
+            hours, minutes = time.split(':')
+            min_past_midnight = int(hours) * 60 + int(minutes)
+            timePoints[i] = min_past_midnight
+        timePoints.sort()
+        res = 1440 + timePoints[0] - timePoints[-1]
+        for i in range(1, len(timePoints)):
+            res = min(res, timePoints[i] - timePoints[i - 1])
+        return res
+
 
