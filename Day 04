@@ -12,3 +12,42 @@ class Solution:
         return res
 
 
+𝐂𝐨𝐝𝐞𝐂𝐡𝐞𝐟 : 𝐂𝐚𝐧𝐝𝐢𝐞𝐬
+for i in range(int(input())):
+    n=int(input())
+    l=list(map(int,input().split()))
+    count=0
+    c=0
+    for j in l:
+        k=l.count(j)
+        if k>=3:
+            c+=1
+    if c>1:
+        print("NO")
+    else:
+        print("yes")
+
+
+𝐆𝐞𝐞𝐤𝐬𝐅𝐨𝐞𝐆𝐞𝐞𝐤𝐬 : 𝐌𝐞𝐝𝐢𝐚𝐧 𝐨𝐟 𝟐 𝐒𝐨𝐫𝐭𝐞𝐝 𝐀𝐫𝐫𝐚𝐲𝐬 𝐨𝐟 𝐃𝐢𝐟𝐟𝐞𝐫𝐞𝐧𝐭 𝐒𝐢𝐳𝐞𝐬
+class Solution:
+    def MedianOfArrays(self, array1, array2):
+            #code here
+            a3=sorted(array1+array2)
+            n=len(a3)
+            m=n//2
+            if n%2!=0:
+                return a3[m]
+            else:
+                g=a3[m]+a3[m-1]
+                c=(g/2)
+            return int(c) if (a3[m]+a3[m-1])%2==0 else c
+
+
+𝐂𝐨𝐝𝐞𝐅𝐨𝐫𝐜𝐞𝐬 : 𝟏𝟗𝟗𝟔𝐀. 𝐋𝐞𝐠𝐬
+t = int(input())  
+for _ in range(t):
+    n = int(input()) 
+    if n % 4 == 0:
+        print(n // 4)
+    else:
+        print(n // 4 + 1)
