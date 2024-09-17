@@ -1,1 +1,44 @@
+𝐋𝐞𝐞𝐭𝐂𝐨𝐝𝐞 : 𝟖𝟖𝟒. 𝐔𝐧𝐜𝐨𝐦𝐦𝐨𝐧 𝐖𝐨𝐫𝐝𝐬 𝐟𝐫𝐨𝐦 𝐓𝐰𝐨 𝐒𝐞𝐧𝐭𝐞𝐧𝐜𝐞𝐬
+from collections import Counter
+class Solution:
+    def uncommonFromSentences(self, s1: str, s2: str) -> List[str]:
+        words1 = s1.split()
+        words2 = s2.split()
+        count = Counter(words1 + words2)
+        # res = [word for word in count if count[word] == 1]
+        res = []
+        for word in count:
+            if count[word] == 1:
+                res.append(word)
+        return res
 
+
+𝐂𝐨𝐝𝐞𝐂𝐡𝐞𝐟 : 𝐂𝐡𝐞𝐟 𝐃𝐢𝐞𝐭
+# cook your dish here
+T = int(input())
+for i in range(T):
+    N, K = map(int, input().split(' '))
+    A = list(map(int, input().split(' ')))
+    remaining = 0
+    days = 0
+    for i in range(len(A)):
+        if A[i]+remaining < K:
+            print('NO', i+1)
+            break
+        else:
+            remaining = (A[i]+remaining) - K
+            days += 1
+    if days == len(A):
+        print('YES')
+
+
+𝐆𝐞𝐞𝐤𝐬𝐅𝐨𝐫𝐆𝐞𝐞𝐤𝐬 : 𝐒𝐭𝐨𝐜𝐤 𝐁𝐮𝐲 𝐚𝐧𝐝 𝐒𝐞𝐥𝐥 – 𝐌𝐮𝐥𝐭𝐢𝐩𝐥𝐞 𝐓𝐫𝐚𝐧𝐬𝐚𝐜𝐭𝐢𝐨𝐧 𝐀𝐥𝐥𝐨𝐰𝐞𝐝
+from typing import List
+class Solution:
+    def stockBuyAndSell(self, n : int, pricess : List[int]) -> int:
+        # code here
+        profit = 0
+        for i in range(1, n):
+            if prices[i] > prices[i - 1]:
+                profit += prices[i] - prices[i-1]
+        return profit
