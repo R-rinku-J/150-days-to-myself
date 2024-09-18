@@ -1,1 +1,39 @@
+𝑳𝒆𝒆𝒕𝑪𝒐𝒅𝒆
+𝟐𝟕. 𝐑𝐞𝐦𝐨𝐯𝐞 𝐄𝐥𝐞𝐦𝐞𝐧𝐭
+class Solution:
+    def removeElement(self, nums: List[int], val: int) -> int:
+        while val in nums:
+            nums.remove(val)
+
+𝟖𝟖. 𝐌𝐞𝐫𝐠𝐞 𝐒𝐨𝐫𝐭𝐞𝐝 𝐀𝐫𝐫𝐚𝐲
+class Solution:
+    def merge(self, nums1: List[int], m: int, nums2: List[int], n: int) -> None:
+        """
+        Do not return anything, modify nums1 in-place instead.
+        """
+        while n > 0:
+            if nums1[m-1] >= nums2[n-1] and m>0:
+                nums1[m+n-1] = nums1[m-1]
+                m -= 1
+            else:
+                nums1[m+n-1] = nums2[n-1]
+                n -= 1
+
+𝟏𝟕𝟗. 𝐋𝐚𝐫𝐠𝐞𝐬𝐭 𝐍𝐮𝐦𝐛𝐞𝐫
+from functools import cmp_to_key
+class Solution:
+    def largestNumber(self, nums: List[int]) -> str:
+        return str(int(''.join(sorted(map(str, nums), key=cmp_to_key(lambda x, y: 1 if x + y < y + x else -1)))))
+
+
+𝐂𝐨𝐝𝐞𝐂𝐡𝐞𝐟 : 𝐁𝐫𝐞𝐚𝐤 𝐭𝐡𝐞 𝐒𝐭𝐢𝐜𝐤
+# cook your dish here
+t = int(input())
+for i in range(t):
+    n, x = map(int, input().split())
+    if(n%2==0 or x%2!=0):
+        print('YES')
+    else:
+        print('NO')
+
 
