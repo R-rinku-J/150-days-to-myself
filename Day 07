@@ -1,1 +1,29 @@
+𝐋𝐞𝐞𝐭𝐂𝐨𝐝𝐞 : 𝟐𝟒𝟏. 𝐃𝐢𝐟𝐟𝐞𝐫𝐞𝐧𝐭 𝐖𝐚𝐲𝐬 𝐭𝐨 𝐀𝐝𝐝 𝐏𝐚𝐫𝐞𝐧𝐭𝐡𝐞𝐬𝐞𝐬
+class Solution:
+    def diffWaysToCompute(self, expression: str) -> List[int]:
+        
+        memo = {}
+        
+        def compute(expression):
+            if expression in memo:
+                return memo[expression]
+            res = []
+            
+            for i, char in enumerate(expression):
+                if char in '+-*':
+                    left = compute(expression[:i])
+                    right = compute(expression[i+1:])
 
+                    for l in left:
+                        for r in right:
+                            if char == '+':
+                                res.append(l + r)
+                            elif char == '-':
+                                res.append(l - r)
+                            elif char == '*':
+                                res.append(l * r)
+            if not res:
+                res.append(int(expression))
+            memo[expression] = res
+            return res
+        return compute(expression)
