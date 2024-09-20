@@ -27,3 +27,50 @@ class Solution:
             memo[expression] = res
             return res
         return compute(expression)
+
+
+𝐂𝐨𝐝𝐞𝐂𝐡𝐞𝐟 : 𝐄𝐧𝐜𝐨𝐝𝐢𝐧𝐠 𝐌𝐞𝐬𝐬𝐚𝐠𝐞
+# cook your dish here
+for _ in range(int(input())):
+    n=int(input())
+    s=input()
+    l=list(s)
+    for i in range(0,n-1,2):
+        temp=l[i]
+        l[i]=l[i+1]
+        l[i+1]=temp
+    for i in l:
+        k=abs(97-ord(i))
+        d=122-k
+        print(chr(d),end="")
+    print()
+
+
+𝐆𝐞𝐞𝐤𝐬𝐅𝐨𝐫𝐆𝐞𝐞𝐤𝐬 : 𝐂𝐨𝐮𝐧𝐭 𝐭𝐡𝐞 𝐬𝐮𝐛𝐬𝐭𝐫𝐢𝐧𝐠
+class Solution():
+    def countSubstring(self, S):
+        n =len(s)
+        dp = [0]*((2*n)+1)
+        minius ,count = 0,n
+        for i in range(n):
+            if s[i]=="0": 
+                count-=1
+            else: 
+                count+=1
+            if count<=n: 
+                minius+=1
+            dp[count]+=1
+        ans = 0
+        ind = n
+        for i in range(n):
+            ans += (n-i-minius)
+            if s[i]=="1":
+                ind+=1
+                dp[ind]-=1
+                minius+=dp[ind]
+            else:
+                minius-=1
+                minius-=dp[ind]
+                ind-=1
+                dp[ind]-=1
+        return ans
