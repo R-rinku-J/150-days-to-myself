@@ -1,1 +1,39 @@
+𝐋𝐞𝐞𝐭𝐂𝐨𝐝𝐞 : 𝟐𝟏𝟒. 𝐒𝐡𝐨𝐫𝐭𝐞𝐬𝐭 𝐏𝐚𝐥𝐢𝐧𝐝𝐫𝐨𝐦𝐞
+class Solution:
+    def shortestPalindrome(self, s: str) -> str:
+        r = s[::-1]
+        for i in range(len(s) + 1):
+            if s[:len(s) - i] == r[i:]:
+                return r[:i] + s
 
+
+𝐂𝐨𝐝𝐞𝐂𝐡𝐞𝐟 : 𝐁𝐞𝐚𝐫 𝐚𝐧𝐝 𝐂𝐚𝐧𝐝𝐢𝐞𝐬 𝟏𝟐𝟑
+# cook your dish here
+t = int(input())
+for _ in range(t):
+    l, b = map(int, input().split())
+    i = 1
+    while (a>=0 and b>=0):
+        l = l-i
+        if l < 0 :
+            print('Bob')
+            break
+        b = b-i-1
+        if b<0:
+            print('Limak')
+            break
+        i = i+2
+
+
+𝐆𝐞𝐞𝐤𝐬𝐅𝐨𝐫𝐆𝐞𝐞𝐤𝐬 : 𝐅𝐚𝐜𝐢𝐧𝐠 𝐭𝐡𝐞 𝐬𝐮𝐧
+class Solution:
+    # Returns count buildings that can see sunlight
+    def countBuildings(self, height):
+        # code here
+        count = 1
+        h = height[0]
+        for i in height:
+            if i > h:
+                h = i
+                count += 1
+        return count
