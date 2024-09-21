@@ -1,1 +1,6 @@
+𝐋𝐞𝐞𝐭𝐂𝐨𝐝𝐞 : 𝟑𝟖𝟔. 𝐋𝐞𝐱𝐢𝐜𝐨𝐠𝐫𝐚𝐩𝐡𝐢𝐜𝐚𝐥 𝐍𝐮𝐦𝐛𝐞𝐫𝐬
+class Solution:
+    def lexicalOrder(self, n: int) -> List[int]:
+        return sorted(range(1, n+1), key=str)
+
 
