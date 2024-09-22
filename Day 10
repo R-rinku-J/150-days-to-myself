@@ -1,1 +1,54 @@
+𝐋𝐞𝐞𝐭𝐂𝐨𝐝𝐞 : 𝟒𝟒𝟎. 𝐊-𝐭𝐡 𝐒𝐦𝐚𝐥𝐥𝐞𝐬𝐭 𝐢𝐧 𝐋𝐞𝐱𝐢𝐜𝐨𝐠𝐫𝐚𝐩𝐡𝐢𝐜𝐚𝐥 𝐎𝐫𝐝𝐞𝐫
+class Solution:
+    def findKthNumber(self, n: int, k: int) -> int:
+        def count_prefix(p, n):
+            count = 0
+            current = p
+            next_p = p + 1
+            while current <= n:
+                count += min(next_p, n+1) - current
+                current *= 10
+                next_p *= 10
+            return count
+        current = 1
+        k -= 1
+        while k > 0:
+            count = count_prefix(current, n)
+            if k >= count:
+                k -= count
+                current += 1
+            else:
+                current *= 10
+                k -= 1
+        return current
+
+
+𝐂𝐨𝐝𝐞𝐂𝐡𝐞𝐟 : 𝐂𝐡𝐞𝐟 𝐚𝐧𝐝 𝐓𝐰𝐨 𝐒𝐭𝐫𝐢𝐧𝐠𝐬
+# cook your dish here
+for _ in range(int(input())):
+    s1=input()
+    s2=input()
+    m1=0
+    m2=0
+    for i in range(len(s1)):
+        if(s1[i]!='?' and s2[i]!='?' and s1[i]!=s2[i]):
+            m1+=1 
+        elif(s1[i]=='?' or s2[i]=='?'):
+            m2+=1 
+    print(m1,'',m1+m2)
+
+
+𝐆𝐞𝐞𝐤𝐬𝐅𝐨𝐫𝐆𝐞𝐞𝐤𝐬 : 𝐒𝐦𝐚𝐥𝐥𝐞𝐬𝐭 𝐏𝐨𝐬𝐢𝐭𝐢𝐯𝐞 𝐈𝐧𝐭𝐞𝐠𝐞𝐫 𝐭𝐡𝐚𝐭 𝐜𝐚𝐧 𝐧𝐨𝐭 𝐛𝐞 𝐫𝐞𝐩𝐫𝐞𝐬𝐞𝐧𝐭𝐞𝐝 𝐚𝐬 𝐒𝐮𝐦
+class Solution:
+    def smallestpositive(self, array, n): 
+        # Your code goes here  
+        res = 1
+        array.sort()
+        for i in range(n):
+            if res < array[i]:
+                return res
+            else:
+                res += array[i]
+        return res
+
 
