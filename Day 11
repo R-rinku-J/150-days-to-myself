@@ -1,1 +1,43 @@
+𝐋𝐞𝐞𝐭𝐂𝐨𝐝𝐞 : 𝟐𝟕𝟎𝟕. 𝐄𝐱𝐭𝐫𝐚 𝐂𝐡𝐚𝐫𝐚𝐜𝐭𝐞𝐫𝐬 𝐢𝐧 𝐚 𝐒𝐭𝐫𝐢𝐧𝐠
+class Solution:
+    def minExtraChar(self, s: str, dictionary: List[str]) -> int:
+        
+        dictionary = set(dictionary)
+        max_len, n = len(max(dictionary, key = len)), len(s)
+        dp = [0]*(n+1)
+        for i, _ in enumerate(s, 1):
+            dp[i] = dp[i-1] + 1
+            for j in range(max(0, i-max_len), i):
+                if s[j:i] in dictionary:
+                    dp[i] = min(dp[j], dp[i])
+        return dp[-1]
+
+
+𝐂𝐨𝐝𝐞𝐂𝐡𝐞𝐟 : 𝐂𝐚𝐫𝐝 𝐑𝐞𝐦𝐨𝐯𝐚𝐥
+# cook your dish here
+from statistics import mode
+for _ in range(int(input())):
+    n = int(input())
+    a = list(map(int,input().split()))
+    j = mode(a)
+    cn = a.count(j)
+    print(n-cn)
+
+
+𝐆𝐞𝐞𝐤𝐬𝐅𝐨𝐫𝐆𝐞𝐞𝐤𝐬 : 𝐌𝐢𝐬𝐬𝐢𝐧𝐠 𝐀𝐧𝐝 𝐑𝐞𝐩𝐞𝐚𝐭𝐢𝐧𝐠
+class Solution:
+    def findTwoElement( self,arr): 
+        # code here
+        res = []
+        for i in arr:
+            index = abs(i) - 1
+            if arr[index] < 0:
+                res.append(abs(i))
+            else:
+                arr[index] *= -1
+        for i, e in enumerate(arr):
+            if e > 0:
+                res.append(i+1)
+        return res
+
 
