@@ -1,1 +1,58 @@
+𝐋𝐞𝐞𝐭𝐂𝐨𝐝𝐞 : 𝟐𝟒𝟏𝟔. 𝐒𝐮𝐦 𝐨𝐟 𝐏𝐫𝐞𝐟𝐢𝐱 𝐒𝐜𝐨𝐫𝐞𝐬 𝐨𝐟 𝐒𝐭𝐫𝐢𝐧𝐠𝐬
 
+
+𝐂𝐨𝐝𝐞𝐂𝐡𝐞𝐟 : 𝐙𝐞𝐫𝐨 𝐒𝐭𝐫𝐢𝐧𝐠
+for _ in range(int(input())):
+    N=int(input())
+    S=input()
+    one=S.count("1")
+    zero=S.count("0")
+    if zero>=one:
+        val=one
+    else:
+        val=1+zero
+    print(val)
+
+
+𝐆𝐞𝐞𝐤𝐬𝐅𝐨𝐫𝐆𝐞𝐞𝐤𝐬 : 𝐏𝐚𝐥𝐢𝐧𝐝𝐫𝐨𝐦𝐞 𝐋𝐢𝐧𝐤𝐞𝐝 𝐋𝐢𝐬𝐭
+class Solution:
+    def isPalindrome(self, head):
+        #code here
+        slow, fast = head, head.next
+        while fast and fast.next: slow, fast = slow.next, fast.next.next
+        slow = slow.next
+        prev = None
+        while slow:
+            nxt = slow.next
+            slow.next = prev
+            prev = slow
+            slow = nxt
+            
+        while prev:
+            if prev.data != head.data: return False
+            prev, head = prev.next, head.next
+        return True
+
+
+𝐈𝐧𝐭𝐞𝐫𝐯𝐢𝐞𝐰𝐁𝐢𝐭 : 𝐌𝐢𝐧𝐢𝐦𝐮𝐦 𝐀𝐩𝐩𝐞𝐧𝐝𝐬 𝐟𝐨𝐫 𝐏𝐚𝐥𝐢𝐧𝐝𝐫𝐨𝐦𝐞!(C++)
+int Solution::solve(string A) {
+    int i=0;
+    int j=A.size()-1;
+    int k,l;
+    while(i<j){
+        if(A[i]==A[j]){
+            k=i;
+            l=j;
+            while(k<l && A[k]==A[l]){
+                k++;
+                l--;
+            }
+            if(k>=l){
+                return i;
+            }
+            i = k;
+        }else{
+            i++;
+        }
+    }
+}
