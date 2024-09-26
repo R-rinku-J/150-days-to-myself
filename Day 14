@@ -1,1 +1,61 @@
+𝐋𝐞𝐞𝐭𝐂𝐨𝐝𝐞 : 𝐌𝐲 𝐂𝐚𝐥𝐞𝐧𝐝𝐚𝐫 𝐈
+class MyCalendar:
+    def __init__(self):
+        self.events = [] #(s, e)
+    def book(self, start: int, end: int) -> bool:
+        for s, e in self.events:
+            if not(e <= start or end <= s):
+                return False
+        self.events.append((start, end))
+        return True
 
+𝐂𝐨𝐝𝐞𝐂𝐡𝐞𝐟 : 𝐀𝐢𝐫𝐥𝐢𝐧𝐞 𝐑𝐞𝐬𝐭𝐫𝐢𝐜𝐭𝐢𝐨𝐧𝐬
+# cook your dish here
+for i in range(int(input())):
+    a, b, c , D, E = map(int, input().split())
+    if (a+b <= D and c <= E) or (b+c <= D and a <= E) or (a+c <= D and b <= E):
+        print('YES')
+    else:
+        print('NO')
+
+𝐂𝐨𝐝𝐞𝐂𝐡𝐞𝐟 : 𝐎𝐝𝐝 𝐏𝐚𝐢𝐫𝐬
+# cook your dish here
+t = int(input())
+for i in range(0,t):
+    n = int(input())
+    print(n*n//2)
+
+
+𝐆𝐞𝐞𝐤𝐬𝐅𝐨𝐫𝐆𝐞𝐞𝐤𝐬 : 𝐑𝐨𝐨𝐟 𝐓𝐨𝐩
+class Solution:
+    #Function to find maximum number of consecutive steps 
+    #to gain an increase in altitude with each step.
+    def maxStep(self, arr):
+        #Your code here
+        count = res = 0
+        for i in range(1, len(arr)):
+            if arr[i] > arr[i-1]:
+                count += 1
+            else:
+                count = 0
+            res = max(res, count)
+        return
+
+
+𝐈𝐧𝐭𝐞𝐫𝐯𝐢𝐞𝐰𝐁𝐢𝐭 : 𝐃𝐢𝐟𝐟𝐤
+int Solution::diffPossible(vector<int> &A, int k) {
+    int i = 0, j = 1, n = A.size();
+    while(j < n) {
+        int dif = A[j] - A[i];
+        if(dif == k) return 1;
+        if(dif > k) {
+            i++;
+        }else {
+            j++;
+        }
+       if(i == j) {
+           j++;
+       }
+    }
+    return 0;
+}
