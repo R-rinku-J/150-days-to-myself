@@ -1,1 +1,70 @@
+𝐋𝐞𝐞𝐭𝐂𝐨𝐝𝐞 : 𝟕𝟑𝟏. 𝐌𝐲 𝐂𝐚𝐥𝐞𝐧𝐝𝐚𝐫 𝐈𝐈
+from sortedcontainers import SortedList
+class MyCalendarTwo:
+    def __init__(self):
+        self.calendar = SortedList()
+    def book(self, start: int, end: int) -> bool:
+        self.calendar.add((start, 1))
+        self.calendar.add((end, -1))
+        total = 0
+        for i, j in self.calendar:
+            total += j
 
+            if total == 3:
+                self.calendar.remove((start, 1))
+                self.calendar.remove((end, -1))
+                return False
+        return True
+
+# Your MyCalendarTwo object will be instantiated and called as such:
+# obj = MyCalendarTwo()
+# param_1 = obj.book(start,end)
+
+
+𝐂𝐨𝐝𝐞𝐂𝐡𝐞𝐟 : 𝐂𝐡𝐞𝐟 𝐚𝐧𝐝 𝐡𝐢𝐬 𝐒𝐭𝐮𝐝𝐞𝐧𝐭𝐬
+# cook your dish here
+for _ in range(int(input())):
+    n = input()
+    print(n.count('<>'))
+
+
+𝐆𝐞𝐞𝐤𝐬𝐅𝐨𝐫𝐆𝐞𝐞𝐤𝐬 : 𝐊 𝐒𝐢𝐳𝐞𝐝 𝐒𝐮𝐛𝐚𝐫𝐫𝐚𝐲 𝐌𝐚𝐱𝐢𝐦𝐮𝐦
+#User function Template for python3
+from heapq import heappop, heappush
+class Solution:
+    #Function to find maximum of each subarray of size k.
+    def max_of_subarrays(self,k,arr):
+        #code here
+        h = []
+        for i in range(k - 1):
+            heappush(h, (-arr[i], i))
+        ans = []
+        for i in range(k - 1, len(arr)):
+            heappush(h, (-arr[i], i))
+            while h[0][1] <= i - k:
+                heappop(h)
+            ans.append(-h[0][0])
+        return ans
+
+
+𝐈𝐧𝐭𝐞𝐫𝐯𝐢𝐞𝐰𝐁𝐢𝐭 : 𝐌𝐚𝐱𝐢𝐦𝐮𝐦 𝐎𝐧𝐞𝐬 𝐀𝐟𝐭𝐞𝐫 𝐌𝐨𝐝𝐢𝐟𝐢𝐜𝐚𝐭𝐢𝐨𝐧
+class Solution:
+    # @param A : list of integers
+    # @param B : integer
+    # @return an integer
+    def solve(self, A, B):
+        l=0
+        r=0
+        z=0
+        res=0
+        while r<len(A):
+            if A[r]==0:
+                z+=1
+            if z<=B:
+                res=max(res,r-l+1)
+            elif z>B:
+                if A[l]==0:
+                    z-=1
+                l+=1
+            r+=1
+        return res
