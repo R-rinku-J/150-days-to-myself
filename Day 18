@@ -1,1 +1,94 @@
+𝐋𝐞𝐞𝐭𝐂𝐨𝐝𝐞 : 𝟏𝟑𝟖𝟏. 𝐃𝐞𝐬𝐢𝐠𝐧 𝐚 𝐒𝐭𝐚𝐜𝐤 𝐖𝐢𝐭𝐡 𝐈𝐧𝐜𝐫𝐞𝐦𝐞𝐧𝐭 𝐎𝐩𝐞𝐫𝐚𝐭𝐢𝐨𝐧
+class CustomStack:
+    def __init__(self, maxSize: int):
+        self.maxSize, self.stack, self.inc = maxSize, [], []
+    def push(self, x: int) -> None:
+        if len(self.stack) < self.maxSize: self.stack.append(x), self.inc.append(0)
+    def pop(self) -> int:
+        if not self.stack: return -1
+        if len(self.inc) > 1: self.inc[-2] += self.inc[-1]
+        return self.stack.pop() + self.inc.pop()
+    def increment(self, k: int, val: int) -> None:
+        if self.inc: self.inc[min(k, len(self.inc)) - 1] += val
+# Your CustomStack object will be instantiated and called as such:
+# obj = CustomStack(maxSize)
+# obj.push(x)
+# param_2 = obj.pop()
+# obj.increment(k,val)
 
+
+𝐂𝐨𝐝𝐞𝐂𝐡𝐞𝐟 : 𝐇𝐮𝐧𝐠𝐫𝐲 𝐀𝐬𝐡𝐢𝐬𝐡
+# cook your dish here
+t = int(input())
+for i in range(t):
+    x, y, z = map(int, input().split())
+    if x >= y :
+        print('Pizza')
+    elif x >= z:
+        print('Burger')
+    else:
+        print('Nothing')
+
+𝐂𝐨𝐝𝐞𝐂𝐡𝐞𝐟 : 𝐌𝐚𝐬𝐤 𝐏𝐨𝐥𝐢𝐜𝐲
+# cook your dish here
+t = int(input())
+for i in range(t):
+    N, A = map(int, input().split())
+    print(min((N-A), A))
+
+
+𝐆𝐞𝐞𝐤𝐬𝐅𝐨𝐫𝐆𝐞𝐞𝐤𝐬 : 𝐌𝐞𝐫𝐠𝐞 𝐭𝐰𝐨 𝐁𝐒𝐓 '𝐬
+#User function Template for python3
+class Solution:
+    def merge(self, root1, root2):
+        # code here
+        container = []
+        
+        def f(node):
+            nonlocal container
+            if not node:
+                return
+            
+            f(node.left)
+            container.append(node.data)
+            f(node.right)
+        
+        f(root1)
+        f(root2)
+        
+        container.sort()
+        return container#User function Template for python3
+class Solution:
+    def merge(self, root1, root2):
+        # code here
+        container = []
+        def f(node):
+            nonlocal container
+            if not node:
+                return
+            f(node.left)
+            container.append(node.data)
+            f(node.right)
+        f(root1)
+        f(root2)
+        container.sort()
+        return container
+
+
+𝐈𝐧𝐭𝐞𝐫𝐯𝐢𝐞𝐰𝐁𝐢𝐭 : 𝐌𝐢𝐧𝐢𝐦𝐮𝐦 𝐏𝐚𝐫𝐚𝐧𝐭𝐡𝐞𝐬𝐞𝐬!
+class Solution:
+    # @param A : string
+    # @return an integer
+    def solve(self, A):
+        count = 0
+        temp = []
+        for i in A:
+            if i == '(':
+                temp.append(i)
+            else:
+                if len(temp) != 0:
+                    temp.pop()
+                else:
+                    count += 1
+        count += len(temp)
+        return count
