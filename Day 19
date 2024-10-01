@@ -1,1 +1,40 @@
+𝐋𝐞𝐞𝐭𝐂𝐨𝐝𝐞 : 𝟏𝟒𝟗𝟕. 𝐂𝐡𝐞𝐜𝐤 𝐈𝐟 𝐀𝐫𝐫𝐚𝐲 𝐏𝐚𝐢𝐫𝐬 𝐀𝐫𝐞 𝐃𝐢𝐯𝐢𝐬𝐢𝐛𝐥𝐞 𝐛𝐲 𝐤
+class Solution:
+    def canArrange(self, arr: List[int], k: int) -> bool:
+        count = [0]*k
+        for num in arr:
+            count[num%k] += 1
+        
+        print(count)
+        for x in range(k):
+            comp = -x % k
+            print(comp)
+
+            while count[x] > 0:
+                count[x] -= 1
+                count[comp] -= 1
+                if count[comp] < 0:
+                    return False
+        return True
+
+
+𝐂𝐨𝐝𝐞𝐂𝐡𝐞𝐟 : 𝐂𝐨𝐮𝐧𝐭𝐢𝐧𝐠 𝐏𝐫𝐨𝐛𝐥𝐞𝐦
+t = int(input())
+for _ in range(t):
+    n = int(input())
+    arr = list(map(int,input().split()))
+    count_odd = 0
+    count_even = 0
+    i = 0
+    while i < n:
+        if arr[i]%2 == 0:
+            count_even = count_even + 1
+        else:
+            count_odd = count_odd + 1
+        i = i + 1  
+    if count_odd%2==0 and count_odd>0:
+        print('Yes')
+    else:
+        print('No')
+
 
