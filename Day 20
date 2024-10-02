@@ -69,6 +69,27 @@ class Solution:
                     r -= 1
         return False
 
+
+𝐈𝐧𝐭𝐞𝐫𝐯𝐢𝐞𝐰𝐁𝐢𝐭 : 𝐁𝐚𝐥𝐚𝐧𝐜𝐞𝐝 𝐏𝐚𝐫𝐚𝐧𝐭𝐡𝐞𝐬𝐞𝐬!
+class Solution:
+    # @param A : string
+    # @return an integer
+    def solve(self, x):
+        if len (x)%2!=0:
+            return 0
+        else:
+            a=[]
+            for i in x:
+                if i == "(":
+                    a.append(')')
+                elif a and a[-1] == i:
+                    a.pop()
+                else:
+                    return 0
+            if not a:
+                return 1
+            else:
+                return 0
 𝐆𝐞𝐞𝐤𝐬𝐅𝐨𝐫𝐆𝐞𝐞𝐤𝐬 : 𝐏𝐨𝐰𝐞𝐫 𝐎𝐟 𝐍𝐮𝐦𝐛𝐞𝐫𝐬
 import math
 class Solution:
