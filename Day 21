@@ -1,1 +1,67 @@
+𝐋𝐞𝐞𝐭𝐂𝐨𝐝𝐞 : 𝟏𝟓𝟗𝟎. 𝐌𝐚𝐤𝐞 𝐒𝐮𝐦 𝐃𝐢𝐯𝐢𝐬𝐢𝐛𝐥𝐞 𝐛𝐲 𝐏
+class Solution:
+    def minSubarray(self, nums: List[int], p: int) -> int:
+        rem = sum(nums) % p
+        if rem == 0:
+            return 0
+        
+        length = len(nums)
+        h = {0: -1}
 
+        run = [0]
+        for i, num in enumerate(nums):
+            run.append(run[-1] + num)
+            curr = run[-1] % p
+            if curr >= rem:
+                if curr - rem in h:
+                    length = min(length, i-h[curr - rem])
+            else:
+                if p - rem + curr in h:
+                    length = min(length, i-h[p-rem+curr])
+            h[curr] = i
+        if length == len(nums):
+            return -1
+        return length
+
+
+𝐂𝐨𝐝𝐞𝐂𝐡𝐞𝐟 : 𝐏𝐫𝐢𝐦𝐞 𝐆𝐞𝐧𝐞𝐫𝐚𝐭𝐨𝐫
+# cook your dish here
+import sympy
+t = int(input())
+for _ in range(t):
+    N1, N2 = map(int, input().split())
+    for Num in range(N1, N2 + 1):
+        if sympy.isprime(Num):
+            print(Num)
+    else:
+        print()
+
+
+𝐆𝐞𝐞𝐤𝐬𝐅𝐨𝐫𝐆𝐞𝐞𝐤𝐬 : 𝐖𝐢𝐥𝐝𝐜𝐚𝐫𝐝 𝐬𝐭𝐫𝐢𝐧𝐠 𝐦𝐚𝐭𝐜𝐡𝐢𝐧𝐠
+import re
+class Solution:
+    def match(self, wild, pattern):
+        regex = re.escape(wild).replace(r"\*", ".*").replace(r"\?", ".")
+        return re.fullmatch(regex, pattern) is not None
+
+
+𝐈𝐧𝐭𝐞𝐫𝐯𝐢𝐞𝐰𝐁𝐢𝐭 : 𝐈𝐧𝐬𝐞𝐫𝐭𝐢𝐨𝐧 𝐒𝐨𝐫𝐭 𝐋𝐢𝐬𝐭
+# Definition for singly-linked list.
+# class ListNode:
+#	def __init__(self, x):
+#		self.val = x
+#		self.next = None
+
+class Solution:
+	# @param A : head node of linked list
+	# @return the head node in the linked list
+	def insertionSortList(self, A):
+        temp = A
+        while temp != None:
+            traverse = A
+            while traverse != temp:
+                if traverse.val > temp.val:
+                    traverse.val, temp.val = temp.val, traverse.val
+                traverse = traverse.next
+            temp = temp.next
+        return A
