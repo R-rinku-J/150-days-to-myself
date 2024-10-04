@@ -1,0 +1,126 @@
+𝐋𝐞𝐞𝐭𝐂𝐨𝐝𝐞 : 𝟐𝟒𝟗𝟏. 𝐃𝐢𝐯𝐢𝐝𝐞 𝐏𝐥𝐚𝐲𝐞𝐫𝐬 𝐈𝐧𝐭𝐨 𝐓𝐞𝐚𝐦𝐬 𝐨𝐟 𝐄𝐪𝐮𝐚𝐥 𝐒𝐤𝐢𝐥𝐥
+class Solution:
+    def dividePlayers(self, skill: List[int]) -> int:
+
+        skill.sort()
+        team_skill = skill[0] + skill[-1]
+        final = skill[0] * skill[-1]
+        
+        for i in range(1, len(skill) // 2):
+            if skill[i] + skill[-1 - i] != team_skill:
+                return -1
+            final += skill[i] * skill[-1 - i]
+        return final
+
+
+𝐂𝐨𝐝𝐞𝐂𝐡𝐞𝐟 : 𝐂𝐨𝐯𝐢𝐝 𝐚𝐧𝐝 𝐓𝐡𝐞𝐚𝐭𝐫𝐞 𝐓𝐢𝐜𝐤𝐞𝐭𝐬
+# cook your dish here
+t = int(input())
+for i in range(t):
+    count = 0
+    n, m = map(int, input().split())
+    for i in range(0, n, 2):
+        for j in range(0, m, 2):
+            count += 1 
+    print(count)
+
+
+𝐆𝐞𝐞𝐤𝐬𝐅𝐨𝐫𝐆𝐞𝐞𝐤𝐬 : 𝐃𝐞𝐥𝐞𝐭𝐢𝐨𝐧 𝐚𝐧𝐝 𝐑𝐞𝐯𝐞𝐫𝐬𝐞 𝐢𝐧 𝐂𝐢𝐫𝐜𝐮𝐥𝐚𝐫 𝐋𝐢𝐧𝐤𝐞𝐝 𝐋𝐢𝐬𝐭
+#User function Template for python3
+'''
+class Node:
+    def __init__(self, data):
+        self.data = data
+        self.next = None
+
+'''
+class Solution:
+    # Function to reverse a circular linked list
+    def reverse(self, head):
+        #code here
+        if not head or not head.next:
+            return head
+        
+        prev = None
+        current = head
+        next_node = current.next
+        
+        while True:
+            next_node = current.next
+            current.next = prev
+            prev = current
+            current = next_node
+            
+            if current == head:
+                break
+        
+        head.next = prev
+        return prev
+    # Function to delete a node from the circular linked list
+    def deleteNode(self, head, key):
+        #code here
+        if not head:
+            return None
+        
+        current = head
+        if head.data == key:
+            temp = head
+            while temp.next != head:
+                temp = temp.next
+            if head == temp:
+                return None
+            temp.next = head.next
+            return head.next
+        
+        while current.next != head:
+            if current.next.data == key:
+                current.next = current.next.next
+                return head
+            current = current.next
+        return head
+
+
+𝐈𝐧𝐭𝐞𝐫𝐯𝐢𝐞𝐰𝐁𝐢𝐭 : 𝐅𝐢𝐫𝐬𝐭 𝐧𝐨𝐧-𝐫𝐞𝐩𝐞𝐚𝐭𝐢𝐧𝐠 𝐜𝐡𝐚𝐫𝐚𝐜𝐭𝐞𝐫 𝐢𝐧 𝐚 𝐬𝐭𝐫𝐞𝐚𝐦 𝐨𝐟 𝐜𝐡𝐚𝐫𝐚𝐜𝐭𝐞𝐫𝐬
+string Solution::solve(string a) {
+    string b=a;
+    int n = a.size();
+    for(int i=0;i<n;i++){
+        b[i]='*';
+    }
+    b+='#';
+    vector<int> start(26,-1);
+    vector<int> end(26,n);
+    for(int i=0;i<n;i++){
+       if(start[a[i]-'a']==-1){
+           start[a[i]-'a']=i;
+       }
+       else if(end[a[i]-'a']==n){
+           end[a[i]-'a']=i;
+       }
+    }
+    int temp  = -1;
+    for(int i=0;i<n;i++){
+        if(temp<i && i!=0){
+            if(start[a[i]-'a']==i){
+                b[i-1]='#';
+                temp = end[a[i]-'a']-1;
+                b[temp]=a[i];
+            }
+            else{
+                temp =i;
+                b[temp] ='#';
+            }
+        }
+        else if (end[a[i]-'a']-1>temp){
+            temp = end[a[i]-'a']-1;
+            b[temp] = a[i];
+        }
+    }
+    for(int i=n-1;i>=0;i--){
+        if(b[i]=='*'){
+            b[i]=b[i+1];
+        }
+    }
+    b.pop_back();
+    return b;
+}
