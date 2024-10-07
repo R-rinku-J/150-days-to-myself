@@ -1,1 +1,24 @@
+𝐋𝐞𝐞𝐭𝐂𝐨𝐝𝐞 : 𝟐𝟔𝟗𝟔. 𝐌𝐢𝐧𝐢𝐦𝐮𝐦 𝐒𝐭𝐫𝐢𝐧𝐠 𝐋𝐞𝐧𝐠𝐭𝐡 𝐀𝐟𝐭𝐞𝐫 𝐑𝐞𝐦𝐨𝐯𝐢𝐧𝐠 𝐒𝐮𝐛𝐬𝐭𝐫𝐢𝐧𝐠𝐬
+class Solution:
+    def minLength(self, s: str) -> int:
+        
+        # store = []
+        # for i in s:
+        #     if not store:
+        #         store.append(i)
+        #         continue
+        #     if i == 'B' and store[-1] == 'A':
+        #         store.pop()
+        #     elif i == 'D' and store[-1] == 'C':
+        #         store.pop()
+        #     else:
+        #         store.append(i)
+        # return len(store)
 
+        store = []
+        for i in s:
+            if store and store[-1] + i in ('AB', 'CD'):
+                store.pop()
+            else:
+                store.append(i)
+        return len(store)
