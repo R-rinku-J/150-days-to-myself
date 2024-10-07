@@ -22,3 +22,6 @@ class Solution:
             else:
                 store.append(i)
         return len(store)
+
+
+𝐆𝐞𝐞𝐤𝐬𝐅𝐨𝐫𝐆𝐞𝐞𝐤𝐬:
