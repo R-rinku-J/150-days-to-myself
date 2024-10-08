@@ -24,4 +24,16 @@ class Solution:
         return len(store)
 
 
-𝐆𝐞𝐞𝐤𝐬𝐅𝐨𝐫𝐆𝐞𝐞𝐤𝐬:
+𝐆𝐞𝐞𝐤𝐬𝐅𝐨𝐫𝐆𝐞𝐞𝐤𝐬:𝐋𝐚𝐫𝐠𝐞𝐬𝐭 𝐏𝐚𝐢𝐫 𝐒𝐮𝐦
+from typing import List
+class Solution:
+    def pairsum(self, arr : List[int]) -> int:
+        # code here
+        num1, num2 = 0, 0
+        for a in arr:
+            if a > num1:
+                num2 = num1
+                num1 = a
+            elif a > num2:
+                num2 = a
+        return num1 + num2
