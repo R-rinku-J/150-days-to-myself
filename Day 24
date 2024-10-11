@@ -1,1 +1,15 @@
-
+𝐋𝐞𝐞𝐭𝐂𝐨𝐝𝐞 : 𝟗𝟔𝟐. 𝐌𝐚𝐱𝐢𝐦𝐮𝐦 𝐖𝐢𝐝𝐭𝐡 𝐑𝐚𝐦𝐩
+class Solution:
+    def maxWidthRamp(self, A: List[int]) -> int:
+        ans = 0
+        stack = []
+        for i in range(len(A)): 
+            if not stack or A[stack[-1]] > A[i]: stack.append(i)
+            else: 
+                lo, hi = 0, len(stack)
+                while lo < hi: 
+                    mid = lo + hi >> 1
+                    if A[stack[mid]] <= A[i]: hi = mid
+                    else: lo = mid + 1
+                ans = max(ans, i - stack[lo])
+        return ans 
