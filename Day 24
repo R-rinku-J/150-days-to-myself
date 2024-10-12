@@ -13,3 +13,15 @@ class Solution:
                     else: lo = mid + 1
                 ans = max(ans, i - stack[lo])
         return ans 
+
+
+𝐂𝐨𝐝𝐞𝐂𝐡𝐞𝐟 : 𝐑𝐞𝐦𝐨𝐯𝐞 𝐁𝐚𝐝 𝐞𝐥𝐞𝐦𝐞𝐧𝐭𝐬
+# cook your dish here
+from collections import Counter
+for i in range(int(input())):
+    n=int(input())
+    l=list(map(int,input().split()))
+    c=Counter(l)
+    for a,b in c.most_common(1):
+        m=b
+    print(n-m)
