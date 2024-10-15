@@ -25,3 +25,21 @@ for i in range(int(input())):
     for a,b in c.most_common(1):
         m=b
     print(n-m)
+
+
+𝐆𝐞𝐞𝐤𝐬𝐅𝐨𝐫𝐆𝐞𝐞𝐤𝐬 : 𝐒𝐮𝐛𝐚𝐫𝐫𝐚𝐲 𝐫𝐚𝐧𝐠𝐞 𝐰𝐢𝐭𝐡 𝐠𝐢𝐯𝐞𝐧 𝐬𝐮𝐦
+class Solution:
+    
+    #Complete this fuction
+    #Function to count the number of subarrays which adds to the given sum.
+    def subArraySum(self,arr, tar):
+        #Your code here
+        dicti = {0:1}
+        count = 0
+        curr_sum = 0
+        for i in range(len(arr)):
+            curr_sum += arr[i]
+            if curr_sum - tar in dicti:
+                count += dicti[curr_sum - tar]
+            dicti[curr_sum] = dicti.get(curr_sum, 0) + 1
+        return count
