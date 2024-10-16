@@ -43,3 +43,24 @@ class Solution:
                 count += dicti[curr_sum - tar]
             dicti[curr_sum] = dicti.get(curr_sum, 0) + 1
         return count
+
+
+𝐈𝐧𝐭𝐞𝐫𝐯𝐢𝐞𝐰𝐁𝐢𝐭 : 𝐍𝐞𝐚𝐫𝐞𝐬𝐭 𝐒𝐦𝐚𝐥𝐥𝐞𝐫 𝐄𝐥𝐞𝐦𝐞𝐧𝐭
+class Solution:
+	# @param A : list of integers
+	# @return a list of integers
+	def prevSmaller(self, A):
+        s = list()
+        res = []
+        
+        for i in range(len(A)):
+            while (len(s) > 0 and s[-1] >= A[i]):
+                s.pop()
+            
+            if (len(s) == 0):
+                res.append(-1)
+            else:
+                res.append(s[-1])
+            s.append(A[i])
+        return res
+        
