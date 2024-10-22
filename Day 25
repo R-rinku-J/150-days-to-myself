@@ -1,0 +1,71 @@
+𝐋𝐞𝐞𝐭𝐜𝐨𝐝𝐞 : 𝟐𝟓𝟖𝟑. 𝐊𝐭𝐡 𝐋𝐚𝐫𝐠𝐞𝐬𝐭 𝐒𝐮𝐦 𝐢𝐧 𝐚 𝐁𝐢𝐧𝐚𝐫𝐲 𝐓𝐫𝐞𝐞
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+class Solution:
+    def kthLargestLevelSum(self, root: Optional[TreeNode], k: int) -> int:
+        
+        def dfs(node, d):
+            if not node:
+                return
+            
+            levels[d] += node.val
+            dfs(node.left, d+1)
+            dfs(node.right, d+1)
+        
+        levels = defaultdict(int)
+        dfs(root, 0)
+        if k > len(levels):
+            return -1
+        
+        return sorted(levels.values())[-k]
+
+
+𝐂𝐨𝐝𝐞𝐜𝐡𝐞𝐟 : 𝐃𝐢𝐬𝐜𝐫𝐞𝐩𝐚𝐧𝐜𝐢𝐞𝐬 𝐢𝐧 𝐭𝐡𝐞 𝐕𝐨𝐭𝐞𝐫𝐬 𝐋𝐢𝐬𝐭
+# cook your dish here
+a,b,c=map(int,input().split())
+x=set([int(input()) for _ in range(a)])
+y=set([int(input()) for _ in range(b)])
+z=set([int(input()) for _ in range(c)])
+
+ans=(x&y)|(x&z)|(y&z)
+ans=list(ans)
+print(len(ans))
+ans.sort()
+[print(x) for x in ans]
+
+
+𝐆𝐞𝐞𝐤𝐬𝐅𝐨𝐫𝐆𝐞𝐞𝐤𝐬 : 𝐒𝐮𝐛-𝐚𝐫𝐫𝐚𝐲𝐬 𝐰𝐢𝐭𝐡 𝐞𝐪𝐮𝐚𝐥 𝐧𝐮𝐦𝐛𝐞𝐫 𝐨𝐟 𝐨𝐜𝐜𝐮𝐫𝐞𝐧𝐜𝐞𝐬
+#User function Template for python3
+from collections import defaultdict
+class Solution:
+    def sameOccurrence(self, arr, x, y):
+        # code here
+        count = defaultdict(int)
+        count[0] = 1
+        a = 0
+        b = 0
+        for i in arr:
+            a += 1 if i == x else -1 if i == y else 0
+            b += count[a]
+            count[a] += 1
+        return b
+
+
+𝐈𝐧𝐭𝐞𝐫𝐯𝐢𝐞𝐰𝐁𝐢𝐭 : 𝐌𝐚𝐭𝐫𝐢𝐱 𝐌𝐞𝐝𝐢𝐚𝐧
+class Solution:
+    # @param A : list of list of integers
+    # @return an integer
+    def findMedian(self, A):
+        res = []
+        for  i in A:
+            res.extend(i)
+        ans = len(res)
+        res.sort()
+        if ans % 2 !=0:
+            return res[ans//2]
+        else:
+            return (res[n//2]+res[n//2-1])//2
