@@ -1,0 +1,111 @@
+𝐋𝐞𝐞𝐭𝐂𝐨𝐝𝐞 : 𝟗𝟓𝟏. 𝐅𝐥𝐢𝐩 𝐄𝐪𝐮𝐢𝐯𝐚𝐥𝐞𝐧𝐭 𝐁𝐢𝐧𝐚𝐫𝐲 𝐓𝐫𝐞𝐞𝐬
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+class Solution:
+    def flipEquiv(self, root1: Optional[TreeNode], root2: Optional[TreeNode]) -> bool:
+        # If both are none 
+        if not root1 and not root2:
+            return True
+        
+        # If one is none and other is not
+        if not root1 or not root2:
+            return False
+        
+        # If the values of two roots are not equal
+        if root1.val != root2.val:
+            return False
+
+        # Checking if the trees are flip equivalent
+        no_flip = self.flipEquiv(root1.left, root2.left) and self.flipEquiv(root1.right, root2.right)
+        flip = self.flipEquiv(root1.left, root2.right) and self.flipEquiv(root1.right, root2.left)
+        
+        return no_flip or flip
+
+
+𝐂𝐨𝐝𝐞𝐂𝐡𝐞𝐟 : 𝐋𝐚𝐳𝐲 𝐉𝐞𝐦
+# cook your dish here
+t=int(input())
+for _ in range(t):
+    n,b,m=map(int,input().split())
+    temp=0
+    while n>0:
+        if n%2==0:
+            temp+=n//2*m+b
+            n-=n//2
+        else:
+            temp+=(n+1)//2*m+b
+            n-=(n+1)//2
+        m*=2
+    print(temp-b)
+
+
+𝐆𝐞𝐞𝐤𝐬𝐅𝐨𝐫𝐆𝐞𝐞𝐤𝐬 : 𝐌𝐨𝐝𝐢𝐟𝐲 𝐭𝐡𝐞 𝐀𝐫𝐫𝐚𝐲
+class Solution:
+    def modifyAndRearrangeArr (self, arr) : 
+        #Complete the function
+        i=0
+        while i<len(arr)-1:
+            if arr[i]==0:
+                arr.pop(i)
+                arr.append(0)
+            elif arr[i]==arr[i+1]:
+                arr[i]=2*arr[i]
+                arr.pop(i+1)
+                arr.append(0)
+            i+=1
+        
+        return arr
+
+
+𝐈𝐧𝐭𝐞𝐫𝐯𝐢𝐞𝐰𝐁𝐢𝐭 : 𝐇𝐨𝐭𝐞𝐥 𝐒𝐞𝐫𝐯𝐢𝐜𝐞
+from collections import deque
+class Solution:
+    # @param A : list of list of integers
+    # @param B : list of list of integers
+    # @return a list of integers
+    def nearestHotel(self, A, B):
+        n = len(A)
+        m = len(A[0])
+        inf = 1 << 30
+        dis = [[0 for i in range(1005)] for j in range(1005)]
+        q = deque()
+        for i in range(n):
+            for j in range(m):
+                if (A[i][j] == 0):
+                    dis[i + 1][j + 1] = inf
+                else:
+                    dis[i + 1][j + 1] = 0
+                    q.append([i + 1, j + 1])
+                
+        while (len(q)>0):
+            curr = q[0]
+            q.popleft()
+            x = curr[0]
+            y = curr[1]
+            if (dis[x][y + 1] == inf):
+                dis[x][y + 1] = dis[x][y] + 1
+                q.append([x, y + 1])
+            
+            if (dis[x][y - 1] == inf):
+                dis[x][y - 1] = dis[x][y] + 1
+                q.append([x, y - 1])
+            
+            if (dis[x + 1][y] == inf):
+                dis[x + 1][y] = dis[x][y] + 1
+                q.append([x + 1, y])
+            
+            if (dis[x - 1][y] == inf):
+                dis[x - 1][y] = dis[x][y] + 1
+                q.append([x - 1, y])
+            
+        
+        ans = []
+        for i in range(len(B)):
+            ans.append(dis[B[i][0]][B[i][1]])
+        
+        return ans
+
