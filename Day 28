@@ -1,1 +1,71 @@
+𝐋𝐞𝐞𝐭𝐂𝐨𝐝𝐞 : 𝟏𝟐𝟑𝟑. 𝐑𝐞𝐦𝐨𝐯𝐞 𝐒𝐮𝐛-𝐅𝐨𝐥𝐝𝐞𝐫𝐬 𝐟𝐫𝐨𝐦 𝐭𝐡𝐞 𝐅𝐢𝐥𝐞𝐬𝐲𝐬𝐭𝐞𝐦
+class Solution:
+    def removeSubfolders(self, folder: List[str]) -> List[str]:
+        folder.sort()
+        res = [folder[0]]
+        for i in range(1, len(folder)):
+            last_folder = res[-1] + '/'
+            if not folder[i].startswith(last_folder):
+                res.append(folder[i])
+        return res
 
+
+𝐂𝐨𝐝𝐞𝐂𝐡𝐞𝐟 : 𝐆𝐚𝐦𝐞 𝐨𝐟 𝐏𝐨𝐨𝐤𝐬
+# cook your dish here
+t = int(input())
+for i in range(t):
+    n = int(input())
+    if n > 3:
+        print(n)
+    elif n > 1 and n <= 3:
+        print(n-1)
+    else:
+        print(1)
+    # print(n if n > 3 else n-1 if n>1 else 1)
+
+
+𝐆𝐞𝐞𝐤𝐬𝐅𝐨𝐫𝐆𝐞𝐞𝐤𝐬 : 𝐀𝐥𝐭𝐞𝐫𝐧𝐚𝐭𝐢𝐯𝐞 𝐒𝐨𝐫𝐭𝐢𝐧𝐠
+class Solution:
+    def alternateSort(self,arr):
+        # Your code goes here
+        n = len(arr)
+        sort_arr = sorted(arr, reverse=True)
+        max_list = sort_arr[:n//2]
+        min_list = sort_arr[n//2:][::-1]
+        res = []
+        for a, b in zip(max_list, min_list):
+            res.append(a)
+            res.append(b)
+        if n % 2 != 0:
+            res.append(min_list[-1])
+        return res
+
+
+𝐈𝐧𝐭𝐞𝐫𝐯𝐢𝐞𝐰𝐁𝐢𝐭 : 𝐏𝐚𝐢𝐧𝐭𝐞𝐫'𝐬 𝐏𝐚𝐫𝐭𝐢𝐭𝐢𝐨𝐧 𝐏𝐫𝐨𝐛𝐥𝐞𝐦
+class Solution:
+	# @param A : integer
+	# @param B : integer
+	# @param C : list of integers
+	# @return an integer
+	def paint(self, A, B, C):
+        mod = 10000003
+        
+        def is_possible(mid):
+            painters = 1
+            total_time = 0
+            for length in C:
+                total_time += length * B
+                if total_time > mid:
+                    painters += 1
+                    total_time = length * B
+            return painters <= A 
+        
+        low = max(C) * B
+        high = sum(C) * B
+        while low < high:
+            mid = (low + high) // 2
+            if is_possible(mid):
+                high = mid
+            else:
+                low = mid + 1
+        return low % mod
