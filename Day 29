@@ -1,1 +1,105 @@
+𝐂𝐨𝐝𝐞𝐂𝐡𝐞𝐟 : 𝐂𝐡𝐞𝐟 𝐚𝐧𝐝 𝐏𝐫𝐨𝐩𝐨𝐫𝐭𝐢𝐨𝐧
+# cook your dish here
+nums = list(map(int, input().split()))
+nums.sort()
+if nums[0]/nums[2] == nums[1]/nums[3]:
+    print('Possible')
+else:
+    print('Impossible')
 
+
+𝐆𝐞𝐞𝐤𝐬𝐅𝐨𝐫𝐆𝐞𝐞𝐤𝐬 : 𝐎𝐜𝐜𝐮𝐫𝐞𝐧𝐜𝐞 𝐨𝐟 𝐚𝐧 𝐢𝐧𝐭𝐞𝐠𝐞𝐫 𝐢𝐧 𝐚 𝐋𝐢𝐧𝐤𝐞𝐝 𝐋𝐢𝐬𝐭
+"""  
+class Node:
+    def __init__(self, data):
+		self.data = data
+		self.next = None
+  This is method only submission.
+  You only need to complete the method.
+"""
+class Solution:
+    def count(self, head, key):
+        # Code here
+        res = 0
+        temp = head
+        while temp:
+            if temp.data == key:
+                res += 1
+            temp = temp.next
+        return res
+
+
+𝐈𝐧𝐭𝐞𝐫𝐯𝐢𝐞𝐰𝐁𝐢𝐭
+𝑨𝒎𝒂𝒛𝒊𝒏𝒈 𝑺𝒖𝒃𝒂𝒓𝒓𝒂𝒚𝒔
+class Solution:
+    # @param A : string
+    # @return an integer
+    def solve(self, A):
+        vowels = ['A', 'E', 'I', 'O', 'U']
+        text = A.upper()
+        count = 0
+        for i in range(len(text)):
+            if text[i] in vowels:
+                count += len(text) - i 
+        return count % (10003)
+
+𝑹𝒆𝒗𝒆𝒓𝒔𝒆 𝑳𝒊𝒏𝒌𝒆𝒅 𝑳𝒊𝒔𝒕
+# Definition for singly-linked list.
+# class ListNode:
+#    def __init__(self, x):
+#        self.val = x
+#        self.next = None
+
+class Solution:
+    # @param A : head node of linked list
+    # @return the head node in the linked list
+    def reverseList(self, A):
+        current = A
+        prev = None
+        
+        while current is not None:
+            next = current.next
+            current.next = prev
+            prev = current
+            current = next
+            
+        head = prev
+        return head
+
+
+𝐋𝐞𝐞𝐭𝐂𝐨𝐝𝐞 : 𝟐𝟒𝟓𝟖. 𝐇𝐞𝐢𝐠𝐡𝐭 𝐨𝐟 𝐁𝐢𝐧𝐚𝐫𝐲 𝐓𝐫𝐞𝐞 𝐀𝐟𝐭𝐞𝐫 𝐒𝐮𝐛𝐭𝐫𝐞𝐞 𝐑𝐞𝐦𝐨𝐯𝐚𝐥 𝐐𝐮𝐞𝐫𝐢𝐞𝐬
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+
+class Solution:
+    def treeQueries(self, root: Optional[TreeNode], queries: List[int]) -> List[int]:
+
+        def get_height(root, current):
+            if not root: return [0, 0]
+            else:
+                left = get_height(root.left, current + 1)
+                right = get_height(root.right, current + 1)
+                root.val = [root.val, current + max(left), current + max(right)]
+                return [max(left) + 1, max(right) + 1]
+        
+        def gen_sol(root, carry, dicts):
+            if root.left:
+                dicts[root.left.val[0]] = max(carry, root.val[2])
+                gen_sol(root.left, max(carry, root.val[2]), dicts)
+            if root.right:
+                dicts[root.right.val[0]] = max(carry, root.val[1])
+                gen_sol(root.right, max(carry, root.val[1]), dicts)
+        
+        dicts = {}
+        get_height(root, 0)
+        gen_sol(root, -1, dicts)
+
+        res = []
+
+        for i in queries:
+            res.append(dicts[i])
+        return res
