@@ -1,0 +1,91 @@
+𝐋𝐞𝐞𝐭𝐂𝐨𝐝𝐞 : 𝟏𝟐𝟕𝟕. 𝐂𝐨𝐮𝐧𝐭 𝐒𝐪𝐮𝐚𝐫𝐞 𝐒𝐮𝐛𝐦𝐚𝐭𝐫𝐢𝐜𝐞𝐬 𝐰𝐢𝐭𝐡 𝐀𝐥𝐥 𝐎𝐧𝐞𝐬
+# class Solution:
+#     def countSquares(self, matrix: List[List[int]]) -> int:
+
+#         count = matrix.count(1)
+#         count = 0
+#         for r in range(len(matrix)):
+#             for c in range(len(matrix[0])):
+#                 if matrix[r][c] == 1:
+#                     count += 1
+#                 if r == 0 or c == 0:
+#                     continue
+                
+#                 old_val = matrix[r][c]
+#                 matrix[r][c] = min(matrix[r-1][c-1], matrix[r][c-1], matrix[r-1][c]) + 1 if matrix[r][c] == 1 else 0
+#                 count = count + matrix[r][c] - old_val
+#         return count
+
+
+class Solution(object):
+    def countSquares(self, matrix):
+        m, n = len(matrix), len(matrix[0])
+
+        @cache
+        def dp(i, j):
+            if matrix[i][j] == 1:
+                if i != 0 and j != 0:
+                    return min(dp(i-1, j), dp(i, j-1), dp(i-1, j-1)) + 1
+                else:
+                    return 0 + 1
+            else:
+                return 0
+        return sum(dp(i, j) for i in range(m) for j in range (n))
+
+
+𝐂𝐨𝐝𝐞𝐂𝐡𝐞𝐟 : 𝐒𝐭𝐢𝐜𝐤 𝐁𝐫𝐞𝐚𝐤
+# cook your dish here
+t = int(input())
+for i in range(t):
+    l, k = map(int, input().split())
+    print ('0') if l%k == 0 else print ('1')
+
+𝐂𝐨𝐝𝐞𝐂𝐡𝐞𝐟 : 𝐏𝐫𝐨𝐜𝐞𝐬𝐬𝐢𝐧𝐠 𝐚 𝐬𝐭𝐫𝐢𝐧𝐠
+# cook your dish here
+t = int(input())
+for _ in range(t):
+    s = input()
+    ans = 0
+    for i in s:
+        if i in '0123456789':
+            ans += int(i)
+    print(ans)
+
+
+𝐆𝐞𝐞𝐤𝐬𝐅𝐨𝐫𝐆𝐞𝐞𝐤𝐬 : 𝐓𝐫𝐢𝐩𝐥𝐞𝐭 𝐅𝐚𝐦𝐢𝐥𝐲
+class Solution:
+    def findTriplet(self, arr):
+        n = len(arr)
+        ind = set(arr)
+        for i in range(n):
+            for j in range(i+1, n):
+                if arr[i] + arr[j] in ind:
+                    return True
+        return False
+
+
+𝐈𝐧𝐭𝐞𝐫𝐯𝐢𝐞𝐰𝐁𝐢𝐭 : 𝐑𝐨𝐦𝐚𝐧 𝐓𝐨 𝐈𝐧𝐭𝐞𝐠𝐞𝐫
+class Solution:
+    # @param A : string
+    # @return an integer
+    def romanToInt(self, A):
+        # x = "IVXLCDM"
+        d = {
+            "I":1,
+            "V":5,
+            "X":10,
+            "L":50,
+            "C":100,
+            "D":500,
+            "M":1000,
+        }
+        # print(d)
+        ans = 0
+        for i in range(len(A)-1):
+            if d[A[i]] < d[A[i+1]]:
+                ans -= d[A[i]]
+            else:
+                ans += d[A[i]]
+        ans += d[A[len(A)-1]]
+        return ans
+            
