@@ -1,1 +1,75 @@
+𝐋𝐞𝐞𝐭𝐂𝐨𝐝𝐞 : 𝟐𝟓𝟎𝟏. 𝐋𝐨𝐧𝐠𝐞𝐬𝐭 𝐒𝐪𝐮𝐚𝐫𝐞 𝐒𝐭𝐫𝐞𝐚𝐤 𝐢𝐧 𝐚𝐧 𝐀𝐫𝐫𝐚𝐲
+class Solution:
+    def longestSquareStreak(self, nums: List[int]) -> int:
+        
+        dicts = {}
+        nums.sort()
+        res = -1
 
+        for num in nums:
+            sqrt = isqrt(num)
+
+            if sqrt * sqrt == num and sqrt in dicts:
+                dicts[num] = dicts[sqrt] + 1
+                res = max(res, dicts[num])
+            else:
+                dicts[num] = 1
+        return res
+
+
+𝐂𝐨𝐝𝐞𝐂𝐡𝐞𝐟 : 𝐂𝐡𝐞𝐟 𝐚𝐧𝐝 𝐂𝐚𝐫𝐝 𝐆𝐚𝐦𝐞
+# cook your dish here
+t = int(input())
+
+while t > 0:
+    n = int(input())
+    c = int(0)
+    m = int(0)
+    for i in range(n):
+        a,b = map(str,input().split())
+        a  = sum(map(int,a))
+        b  = sum(map(int,b))
+        if a>b:
+            c+=1
+        elif a<b:
+            m+=1
+        else:
+            c+=1
+            m+=1
+    if c>m:
+        print('0',c)
+    elif c<m:
+        print('1',m)
+    else:
+        print('2',c)
+    t-=1
+
+
+𝐆𝐞𝐞𝐤𝐬𝐅𝐨𝐫𝐆𝐞𝐞𝐤𝐬 : 𝐑𝐞𝐦𝐨𝐯𝐞 𝐝𝐮𝐩𝐥𝐢𝐜𝐚𝐭𝐞𝐬 𝐢𝐧 𝐚𝐫𝐫𝐚𝐲
+class Solution:
+    def removeDuplicates(self, arr):
+        # code here 
+        new_arr = []
+        for i in arr:
+            if i not in new_arr:
+                new_arr.append(i)
+        return new_arr
+
+
+𝐈𝐧𝐭𝐞𝐫𝐯𝐢𝐞𝐰𝐁𝐢𝐭 : 𝐅𝐢𝐧𝐝 𝐚 𝐩𝐞𝐚𝐤 𝐞𝐥𝐞𝐦𝐞𝐧𝐭
+class Solution:
+    # @param A : list of integers
+    # @return an integer
+    def solve(self, A):
+        nums = A
+        l, r = 0, len(nums) - 1
+
+        while l < r:
+            mid = (l+r) // 2
+            if nums[mid] > nums[mid + 1]:
+                r = mid
+            else:
+                l = mid + 1
+        return nums[l]
+
+# return max(A)
