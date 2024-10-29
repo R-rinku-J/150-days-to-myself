@@ -32,3 +32,116 @@ class Solution:
             res = j
         
         return res
+
+
+𝐂𝐨𝐝𝐞𝐂𝐡𝐞𝐟 : 𝐏𝐞𝐭 𝐒𝐭𝐨𝐫𝐞
+# cook your dish here
+t=int(input())
+for i in range(t):
+    n=int(input())
+    a=list(map(int,input().split()))
+    b=[]
+    c=[]
+    if n%2!=0:
+        print("No")
+    else:
+        a.sort()
+        for i in range(n):
+            if i%2==0:
+                b.append(a[i])
+            else:
+                c.append(a[i])
+        if b==c:
+            print("Yes")
+        else:
+            print("No")
+
+
+𝐆𝐞𝐞𝐤𝐬𝐅𝐨𝐫𝐆𝐞𝐞𝐤𝐬 : 𝐐𝐮𝐢𝐜𝐤 𝐒𝐨𝐫𝐭 𝐨𝐧 𝐋𝐢𝐧𝐤𝐞𝐝 𝐋𝐢𝐬𝐭
+#User function Template for python3
+
+def quickSort(head):
+    #return head after sorting
+    
+    def sort(h, t):
+        if not h or h == t or h.next == t:
+            return h
+        
+        v = h.data
+        dummy = Node(0)
+        dummy.next = h
+        
+        prev, w = dummy, h
+        while w != t:
+            nw = w.next
+            if w.data < v:
+                prev.next = w.next
+                w.next = dummy.next
+                dummy.next = w
+            else:
+                prev = prev.next
+            
+            w = nw
+        h.next = sort(h.next, t)
+        return sort(dummy.next, h)
+    return sort(head, None)
+
+
+𝐈𝐧𝐭𝐞𝐫𝐯𝐢𝐞𝐰𝐁𝐢𝐭 : 𝐑𝐞𝐝 𝐙𝐨𝐧𝐞
+import math
+
+class Solution:
+    # @param A : list of list of integers
+    # @param B : integer
+    # @return an integer
+    def solve(self, A, B):
+        no_days_min = 0
+        no_days_max = float('-inf')
+        n = len(A)
+        a = []
+        
+        for i in A:
+            no_days_max = max(no_days_max, i[0], i[1], -i[0], -i[1])
+            a.append(complex(i[0],i[1]))
+            
+        def get_no_zones(r):
+            c = 0
+            
+            for i in range(n):
+                for j in range(i+1, n):
+                    g = a[j] - a[i]
+                    dist = abs(g)
+                    if dist > 2*r:
+                        continue
+                    mid = (a[i] + a[j])/2
+                    h = (r**2 - (dist/2)**2) ** 0.5
+                    per = complex(-g.imag, g.real)*(h/dist)
+                    
+                    c1 = c2 = 2
+                    for k in range(n):
+                        if k == i or k == j:
+                            continue
+                        if abs(a[k] - (mid-per)) <= r:
+                            c1 += 1
+                        if abs(a[k] - (mid+per)) <= r:
+                            c2 += 1
+                    
+                    c = max(c, c1, c2)        
+                   
+            return c
+        
+        while no_days_min < no_days_max:
+            no_days_mid = (no_days_min+ no_days_max) // 2
+            
+            no_zones = get_no_zones(no_days_mid)
+            #print("*", no_days_mid, no_zones)
+            
+            if no_zones >= B:
+                no_days_max = no_days_mid
+            else:
+                no_days_min = no_days_mid + 1
+            #print(no_days_min, no_days_max)
+                
+        return no_days_max
+
+
